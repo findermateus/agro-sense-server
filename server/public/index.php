@@ -35,11 +35,13 @@ $customErrorHandler = function (
         return $response->withStatus($httpStatus)
             ->withHeader('Content-Type', 'application/json');
     }
-   
+
     $response->getBody()->write(json_encode([
         'error' => [
             'code' => 'INTERNAL_SERVER_ERROR',
             'message' => $exception->getMessage(),
+            'exception' => $exception::class,
+            'trace' => $exception->getCode()
         ],
     ]));
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Application\DAO\HumidityDAOInterface;
+use App\InterfaceAdapters\DAO\HumidityDAO;
 use DI\ContainerBuilder;
 
 $containerBuilder = new ContainerBuilder();
@@ -14,6 +16,7 @@ $containerBuilder->addDefinitions([
 
         return $pdo;
     },
+    HumidityDAOInterface::class => DI\get(HumidityDAO::class)
 ]);
 
 return $containerBuilder->build();

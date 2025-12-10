@@ -18,7 +18,7 @@ readonly class HumidityController
     {
     }
 
-    public function saveHumidity(ResponseInterface $response, RequestInterface $request, array $args): ResponseInterface
+    public function saveHumidity(RequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $humidityValue = (float)$args['humidityValue'];
         $this->saveHumidity->execute($humidityValue);
@@ -26,7 +26,7 @@ readonly class HumidityController
         return $response->withStatus(201);
     }
 
-    public function getHumidityHistory(ResponseInterface $response): ResponseInterface
+    public function getHumidityHistory(RequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $humidityHistory = $this->getHumidityHistory->execute();
         $response->getBody()->write(json_encode($humidityHistory));
@@ -34,7 +34,7 @@ readonly class HumidityController
         return $response->withHeader('Content-Type', 'application/json');
     }
 
-    public function clearHumidityHistory(ResponseInterface $response): ResponseInterface
+    public function clearHumidityHistory(RequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $this->clearHistory->execute();
 
