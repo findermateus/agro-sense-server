@@ -19,14 +19,14 @@ class HumidityDTO implements JsonSerializable
 
     public function __construct(private float $value, ?DateTime $analyzedAt = null, private ?int $id = null)
     {
-        $this->analyzedAt = $analyzedAt?->format('dd-mm-YYYY H:i:s') ?? (new DateTime())->format('dd-mm-YYYY H:i:s');
+        $this->analyzedAt = $analyzedAt?->format('Y-m-d H:i:s') ?? (new DateTime())->format('Y-m-d H:i:s');
     }
 
     public static function fromArray(array $data): self
     {
         return new self(
             $data['value'] ?? null,
-            isset($data['analyzedAt']) ? new DateTime($data['analyzedAt']) : null,
+            isset($data['analyzed_at']) ? new DateTime($data['analyzed_at']) : null,
             $data['id'] ?? null
         );
     }
