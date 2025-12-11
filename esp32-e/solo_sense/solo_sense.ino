@@ -29,7 +29,7 @@ void sendHumidity(int rawValue) {
   HTTPClient http;
 
   String url = "http://solosense.zumbizus.com:8080/humidity/" + String(rawValue);
-
+  http.addHeader("ApiToken", "CHAVE_DA_API")
   http.begin(client, url);
   int httpCode = http.POST("");
 
